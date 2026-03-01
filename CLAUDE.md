@@ -124,6 +124,25 @@ docker-compose down
 └── deny.toml               # cargo-deny config
 ```
 
+## Website Documentation
+
+The `website/` directory contains both `.html` (rendered pages) and `.md` (markdown source) files.
+
+**Rule: Always read the `.md` file instead of the `.html` file.** The markdown version contains the same content but is lighter and cheaper to parse. Every `.html` page has a corresponding `.md` file:
+
+| Markdown (read this) | HTML (rendered page) |
+|----------------------|---------------------|
+| `architecture.md` | `website/architecture.html` |
+| `website/kiwi-stack.md` | `website/index.html` |
+| `website/roadmap.md` | `website/roadmap.html` |
+| `website/design-system.md` | `website/design-system.html` |
+| `website/components/kiwi-id.md` | `website/components/kiwi-id.html` |
+| `website/components/kiwi-mail.md` | `website/components/kiwi-mail.html` |
+| `website/components/kiwi-mcp.md` | `website/components/kiwi-mcp.html` |
+| `website/components/database.md` | `website/components/database.html` |
+
+**When updating documentation, always update both the `.md` and `.html` files.** Both files contain cross-reference comments at the top reminding you to keep them in sync.
+
 ## Cross-Repo Rules
 
 - **Types crate** (`kiwi-{x}-types`) is the only crate other repos should depend on

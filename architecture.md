@@ -1,3 +1,7 @@
+<!-- NOTE: The HTML version of this page is website/architecture.html. -->
+<!-- If you update this file, also update website/architecture.html to match. -->
+<!-- If you update website/architecture.html, also update this file to match. -->
+
 # KiwiStack Architecture
 
 > **Status:** Living document. Source of truth for all KiwiStack development.
