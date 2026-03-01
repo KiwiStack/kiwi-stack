@@ -237,6 +237,7 @@ kiwi_id = "0.1.0"
 | Component | Layer | Upstream | License | Port | Protocol |
 |-----------|-------|----------|---------|------|----------|
 | Kiwi Chat | Seed | Conduit | Apache-2.0 | 8443 | HTTP/JSON (Matrix CS) |
+| Kiwi Meet | Seed | LiveKit | Apache-2.0 | 8443 | HTTP/JSON + WebRTC |
 | Kiwi Search | Flesh | Meilisearch | MIT | 8443 | HTTP/JSON |
 
 ### Phase 3 — Productivity
@@ -253,19 +254,13 @@ kiwi_id = "0.1.0"
 |-----------|-------|----------|---------|------|----------|
 | Kiwi Store | Core | RustFS | Apache-2.0 | 9000 | S3/HTTP |
 
-### Phase 5 — Media
-
-| Component | Layer | Upstream | License | Port | Protocol |
-|-----------|-------|----------|---------|------|----------|
-| Kiwi Meet | Seed | LiveKit | Apache-2.0 | 8443 | HTTP/JSON + WebRTC |
-
-### Phase 6 — Interface
+### Phase 5 — Interface
 
 | Component | Layer | Upstream | License | Port | Protocol |
 |-----------|-------|----------|---------|------|----------|
 | Kiwi UI | Skin | CopilotKit/AG-UI | MIT | 3000 | HTTP |
 
-### Phase 7 — The Vine (Commercial)
+### Phase 6 — The Vine (Commercial)
 
 | Component | Layer | Upstream | License | Port | Protocol |
 |-----------|-------|----------|---------|------|----------|
