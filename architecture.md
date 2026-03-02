@@ -17,7 +17,8 @@
 3. [Proxy Pattern](#proxy-pattern)
 4. [Versioning & Compatibility](#versioning--compatibility)
 5. [Component Catalog](#component-catalog)
-6. [Dependency License Rules](#dependency-license-rules)
+6. [Kiwi UI](#kiwi-ui)
+7. [Dependency License Rules](#dependency-license-rules)
 7. [API Conventions](#api-conventions)
 8. [Error Handling & Logging](#error-handling--logging)
 9. [Testing Strategy](#testing-strategy)
@@ -235,6 +236,7 @@ kiwi_id = "0.1.0"
 | Database | Core | libsql | MIT | embedded | — |
 | Kiwi Mail | Seed | Stalwart | AGPL-3.0 | 8443 | HTTP/JSON (JMAP) |
 | Kiwi MCP | Skin | — (rmcp SDK) | Apache-2.0 | 8443 | HTTP/SSE (MCP) |
+| Kiwi UI (skeleton) | Skin | — (SvelteKit) | Apache-2.0 | 3000 | HTTP |
 
 ### Phase 2 — Communication
 
@@ -271,6 +273,33 @@ kiwi_id = "0.1.0"
 | Kiwi Core | Vine | Custom | BSL-1.1 | — | Internal |
 | Kiwi Net | Vine | EasyTier | Apache-2.0 | — | WireGuard |
 | Kiwi Gate | Vine | Pingora | Apache-2.0 | 443 | HTTPS |
+
+---
+
+## Kiwi UI
+
+The web client is a four-panel workspace:
+
+| Panel | Role |
+|-------|------|
+| **Service Sidebar** | Icon bar to switch between services (Mail, Chat, Meet, ...) |
+| **List Pane** | Context list for the active service (inbox, channels, meetings, ...) |
+| **Main Content** | Full item view (email body, document, task board, ...) |
+| **AI Assistant** | Chat interface, proposals with Apply/Edit, AG-UI streaming |
+
+### Phase 1 — Skeleton
+
+A minimal UI ships alongside the backend in Phase 1:
+- Static shell with service switching
+- Displays raw API responses in formatted views
+- Enough to log in, test each backend, and verify end-to-end flows
+
+### Phase 5 — Full UI
+
+The polished client built with CopilotKit / AG-UI:
+- Real-time sync via Loro CRDT (kiwi-sync)
+- AG-UI streaming for AI assistant proposals
+- Offline support and progressive enhancement
 
 ---
 
