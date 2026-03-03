@@ -236,7 +236,7 @@ kiwi_id = "0.1.0"
 | Database | Core | libsql | MIT | embedded | — |
 | Kiwi Mail | Seed | Stalwart | AGPL-3.0 | 8443 | HTTP/JSON (JMAP) |
 | Kiwi MCP | Skin | — (rmcp SDK) | Apache-2.0 | 8443 | HTTP/SSE (MCP) |
-| Kiwi UI (skeleton) | Skin | — (SvelteKit) | Apache-2.0 | 3000 | HTTP |
+| Kiwi UI | Skin | — (SvelteKit) | Apache-2.0 | 3000 | HTTP |
 
 ### Phase 2 — Communication
 
@@ -264,7 +264,7 @@ kiwi_id = "0.1.0"
 
 | Component | Layer | Upstream | License | Port | Protocol |
 |-----------|-------|----------|---------|------|----------|
-| Kiwi UI | Skin | CopilotKit/AG-UI | MIT | 3000 | HTTP |
+| Kiwi Web | Skin | CopilotKit/AG-UI | MIT | 3000 | HTTP |
 
 ### Phase 6 — The Vine (Commercial)
 
@@ -276,40 +276,17 @@ kiwi_id = "0.1.0"
 
 ---
 
-## Kiwi UI
+## User Interface
 
-The web client is a workspace with four zones plus a menubar — one browser tab for every service:
+The web client is a five-element workspace — one browser tab, every service inside:
 
-| Zone | Role |
-|------|------|
-| **Service Sidebar** | Icon bar to switch between services. Each has its own color (Mail = coral, Chat = teal, Meet = blue, Docs = pink, Work = purple, Store = amber, Search = green). One click swaps the whole workspace. |
-| **Menubar** | Contextual top bar per service (Inbox/Drafts/Sent/Deleted/Junk/Archive/Configuration for Mail, Channels/Direct/Threads for Chat, Board/List/Timeline for Work, etc.). The AI can open the right menu item when navigating. |
-| **List Pane** | Context list for the active service (inbox, channels, meetings, documents, tasks, files, search results). |
-| **Main Content** | Full item view (email body, chat messages, calendar, document editor, kanban board, file browser). AI actions appear as a **proposal card** overlaid on the content — each AI-touched field gets a colored left border matching the service. **Apply** and **Edit** buttons live here. |
-| **AI Assistant** | Chat panel with conversation bubbles and **CTA action buttons** colored per target service. Can suggest actions, navigate between services (open Mail config, switch to Meet), trigger proposals — but **never applies changes itself**. |
-
-### Interaction Rules
-
-1. **Tell it what you need. It drafts the action. You approve.** The AI proposes via a proposal card in the main content; the human reviews and clicks Apply.
-2. **Apply lives on the content.** The Apply/Edit buttons appear on the proposal card in the main content zone, never in the assistant panel. The AI cannot trigger them. The button label adapts per service: Apply, Send, Schedule, Create.
-3. **Highlighted fields.** AI-touched fields inside the proposal card get a colored left border (matching the service color) so the diff is always visible before approval.
-4. **CTA action buttons.** The assistant offers pill-shaped action buttons colored per target service. They navigate (open a menu item, switch services), trigger proposals, or perform cross-service actions.
-
-### Phase 1 — Skeleton
-
-A minimal UI ships alongside the backend in Phase 1:
-- Static shell with service switching and menubar
-- Displays raw API responses in formatted views
-- Enough to log in, test each backend, and verify end-to-end flows
-
-### Phase 5 — Full UI
-
-The polished client built with CopilotKit / AG-UI:
-- Proposal cards with highlighted fields and Apply/Edit workflow
-- CTA action buttons for cross-service navigation
-- Real-time sync via Loro CRDT (kiwi-sync)
-- AG-UI streaming for AI assistant
-- Offline support and progressive enhancement
+| Element | Role |
+|---------|------|
+| **Service Bar** | Vertical icon bar on the left. Each service has its own color (Mail = coral, Chat = teal, Meet = blue, Docs = pink, Work = purple, Store = amber, Search = green). One click swaps the entire workspace. |
+| **Menubar** | Full-width contextual top bar per service (Inbox/Drafts/Sent for Mail, Channels/Direct/Threads for Chat, Board/List/Timeline for Work, etc.). The AI can open the right menu item when navigating between views. |
+| **List Pane** | Context list for the active service — inbox messages, chat channels, meetings, documents, tasks, files, or search results. |
+| **Content Pane** | Full item view: email body, chat thread, calendar, document editor, kanban board, file browser. AI actions appear as a **proposal card** overlaid on the content — each AI-touched field gets a colored left border matching the service color. **Apply** and **Edit** buttons live here and can only be triggered by the user. |
+| **Assistant Panel** | Chat panel with conversation bubbles and **CTA action buttons** colored per target service. Can suggest actions, navigate between services, and trigger proposals — but **never applies changes itself**. Only the user clicks Apply. |
 
 ---
 
