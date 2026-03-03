@@ -278,25 +278,34 @@ kiwi_id = "0.1.0"
 
 ## Kiwi UI
 
-The web client is a four-panel workspace:
+The web client is a five-zone workspace — one browser tab for every service:
 
-| Panel | Role |
-|-------|------|
-| **Service Sidebar** | Icon bar to switch between services (Mail, Chat, Meet, ...) |
-| **List Pane** | Context list for the active service (inbox, channels, meetings, ...) |
-| **Main Content** | Full item view (email body, document, task board, ...) |
-| **AI Assistant** | Chat interface, proposals with Apply/Edit, AG-UI streaming |
+| Zone | Role |
+|------|------|
+| **Service Sidebar** | Icon bar to switch between services. Each service has its own color (Mail = coral, Chat = teal, Meet = blue, Docs = pink, Work = purple, Store = amber, Search = green). |
+| **Service Toolbar** | Contextual top bar for the active service — navigation (Inbox/Sent/Drafts), primary CTA (Compose, New Meeting...), colors match the service. |
+| **List Pane** | Context list for the active service (inbox, channels, meetings, documents, tasks, files, search results). |
+| **Main Content** | Full item view (email body, chat thread, document editor, task board). AI-modified content appears as highlighted blocks with dashed green borders. The Apply/Edit/Dismiss bar lives here. |
+| **AI Assistant** | Chat interface with CTA action buttons. Can suggest edits (shown as inline highlights), navigate between services (e.g. "Switch to Meet"), and open specific views — but **never applies changes itself**. |
+
+### Interaction Rules
+
+1. **The AI proposes, the human decides.** Every change to content requires explicit human approval via the Apply button.
+2. **Apply lives on the content.** The Apply/Edit bar appears in the main content zone, never in the assistant panel. The AI cannot trigger it.
+3. **Inline highlights.** When the AI writes or modifies content, affected blocks are highlighted (green dashed border) so the diff is always visible.
+4. **Navigation CTAs.** The assistant can offer action buttons to switch services, open a specific view, or start a flow. The human clicks to follow.
 
 ### Phase 1 — Skeleton
 
 A minimal UI ships alongside the backend in Phase 1:
-- Static shell with service switching
+- Static shell with service switching and service toolbar
 - Displays raw API responses in formatted views
 - Enough to log in, test each backend, and verify end-to-end flows
 
 ### Phase 5 — Full UI
 
 The polished client built with CopilotKit / AG-UI:
+- Inline highlighting and Apply/Edit workflow
 - Real-time sync via Loro CRDT (kiwi-sync)
 - AG-UI streaming for AI assistant proposals
 - Offline support and progressive enhancement
