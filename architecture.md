@@ -278,36 +278,37 @@ kiwi_id = "0.1.0"
 
 ## Kiwi UI
 
-The web client is a five-zone workspace — one browser tab for every service:
+The web client is a workspace with four zones plus a menubar — one browser tab for every service:
 
 | Zone | Role |
 |------|------|
-| **Service Sidebar** | Icon bar to switch between services. Each service has its own color (Mail = coral, Chat = teal, Meet = blue, Docs = pink, Work = purple, Store = amber, Search = green). |
-| **Service Toolbar** | Contextual top bar for the active service — navigation (Inbox/Sent/Drafts), primary CTA (Compose, New Meeting...), colors match the service. |
+| **Service Sidebar** | Icon bar to switch between services. Each has its own color (Mail = coral, Chat = teal, Meet = blue, Docs = pink, Work = purple, Store = amber, Search = green). One click swaps the whole workspace. |
+| **Menubar** | Contextual top bar per service (Inbox/Drafts/Sent/Deleted/Junk/Archive/Configuration for Mail, Channels/Direct/Threads for Chat, Board/List/Timeline for Work, etc.). The AI can open the right menu item when navigating. |
 | **List Pane** | Context list for the active service (inbox, channels, meetings, documents, tasks, files, search results). |
-| **Main Content** | Full item view (email body, chat thread, document editor, task board). AI-modified content appears as highlighted blocks with dashed green borders. The Apply/Edit/Dismiss bar lives here. |
-| **AI Assistant** | Chat interface with CTA action buttons. Can suggest edits (shown as inline highlights), navigate between services (e.g. "Switch to Meet"), and open specific views — but **never applies changes itself**. |
+| **Main Content** | Full item view (email body, chat messages, calendar, document editor, kanban board, file browser). AI actions appear as a **proposal card** overlaid on the content — each AI-touched field gets a colored left border matching the service. **Apply** and **Edit** buttons live here. |
+| **AI Assistant** | Chat panel with conversation bubbles and **CTA action buttons** colored per target service. Can suggest actions, navigate between services (open Mail config, switch to Meet), trigger proposals — but **never applies changes itself**. |
 
 ### Interaction Rules
 
-1. **The AI proposes, the human decides.** Every change to content requires explicit human approval via the Apply button.
-2. **Apply lives on the content.** The Apply/Edit bar appears in the main content zone, never in the assistant panel. The AI cannot trigger it.
-3. **Inline highlights.** When the AI writes or modifies content, affected blocks are highlighted (green dashed border) so the diff is always visible.
-4. **Navigation CTAs.** The assistant can offer action buttons to switch services, open a specific view, or start a flow. The human clicks to follow.
+1. **Tell it what you need. It drafts the action. You approve.** The AI proposes via a proposal card in the main content; the human reviews and clicks Apply.
+2. **Apply lives on the content.** The Apply/Edit buttons appear on the proposal card in the main content zone, never in the assistant panel. The AI cannot trigger them. The button label adapts per service: Apply, Send, Schedule, Create.
+3. **Highlighted fields.** AI-touched fields inside the proposal card get a colored left border (matching the service color) so the diff is always visible before approval.
+4. **CTA action buttons.** The assistant offers pill-shaped action buttons colored per target service. They navigate (open a menu item, switch services), trigger proposals, or perform cross-service actions.
 
 ### Phase 1 — Skeleton
 
 A minimal UI ships alongside the backend in Phase 1:
-- Static shell with service switching and service toolbar
+- Static shell with service switching and menubar
 - Displays raw API responses in formatted views
 - Enough to log in, test each backend, and verify end-to-end flows
 
 ### Phase 5 — Full UI
 
 The polished client built with CopilotKit / AG-UI:
-- Inline highlighting and Apply/Edit workflow
+- Proposal cards with highlighted fields and Apply/Edit workflow
+- CTA action buttons for cross-service navigation
 - Real-time sync via Loro CRDT (kiwi-sync)
-- AG-UI streaming for AI assistant proposals
+- AG-UI streaming for AI assistant
 - Offline support and progressive enhancement
 
 ---
